@@ -9,6 +9,8 @@ import { DirectivesModule } from "./directives/directives.module";
 import { ServicesModule } from "./services/services.module";
 import { ExtendDataPipe } from './pipes/extend-data.pipe';
 import {PipesModule} from "./pipes/pipes.module";
+import {MatDialogModule} from "@angular/material";
+import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -18,9 +20,12 @@ import {PipesModule} from "./pipes/pipes.module";
     BrowserModule,
     CommonsModule,
     DirectivesModule,
+    MatDialogModule,
     FormsModule,
     ServicesModule,
     PipesModule,
+    NoopAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

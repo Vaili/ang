@@ -3,6 +3,8 @@ import {IGuess} from "./models/iguess";
 import {GuestService} from "./services/guest.service";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/do'
+import {MatDialog} from "@angular/material";
+import {SimpleDialogComponent} from "./commons/simple-dialog/simple-dialog.component";
 
 
 
@@ -30,7 +32,8 @@ export class AppComponent {
   guests: IGuess[];
 
   constructor(
-    private readonly guestService: GuestService
+    private readonly guestService: GuestService,
+    private matDialog: MatDialog
   ) {
     // this.postID = 0;
     // const hi = "Hi";
@@ -50,9 +53,18 @@ export class AppComponent {
 
   /* Observable list modifier*/
   onAddGuestListeer(args: string) {
-    this.guestService.post(this.guest).subscribe(
-      (res) => this.guests = res
-    );
+    let dialogRef = this.matDialog.open( SimpleDialogComponent, {
+      width: '250px',
+      data: {  }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+
+    // this.guestService.post(this.guest).subscribe(
+    //   (res) => this.guests = res
+    // );
   }
 
 
