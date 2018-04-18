@@ -1,0 +1,33 @@
+<h1> Add Guest </h1>
+
+<form #guestForm="ngForm" (ngSubmit)="onAddGuest(guest)">
+  <div id="td-name">
+    <label> First Name </label>
+    <input required name="firstname" [(ngModel)]="guest.firtsName">
+  </div>
+  <div id="td-lastname">
+    <label> Last Name </label>
+    <input required name="lastname" [(ngModel)]="guest.lastName">
+    <span
+      class="help-block"
+      *ngIf=""
+    >
+      Please enter a recipe name.
+    </span>
+  </div>
+
+  <div id="td-company">
+    <label> Company </label>
+    <select required name="company" [(ngModel)]="guest.company">
+      <option value = ""></option>
+      <option *ngFor="let comp of companies" [value]="comp"> {{ comp }} </option>
+    </select>
+  </div>
+
+  <!--{{ guestForm | json }}-->
+
+  <div>
+    <button type="submit"> Submit </button>
+  </div>
+</form>
+

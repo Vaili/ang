@@ -14,11 +14,12 @@ import {SimpleDialogComponent} from "./commons/simple-dialog/simple-dialog.compo
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  // info = {
+  //   name: 'Stefan',
+  //   birthdate: new Date('24/09/1990')
+  // };
+
   title = 'guess'; // Fuori blocco di una funzione. (analogo alla const)
-  info = {
-    name: 'Stefan',
-    birthdate: new Date('24/09/1990')
-  };
 
   guest: IGuess = {
     firtsName: 'Stefan',
@@ -27,8 +28,8 @@ export class AppComponent {
     company: 'Pc System'
   };
 
-  guestsObs = this.guestService.index().do(console.log);
   // guestsObs = this.guestService.index();
+  guestsObs = this.guestService.index().do(console.log);
   guests: IGuess[];
 
   constructor(
@@ -55,11 +56,19 @@ export class AppComponent {
   onAddGuestListeer(args: string) {
     let dialogRef = this.matDialog.open( SimpleDialogComponent, {
       width: '250px',
-      data: {  }
+      data: { }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      console.log('----------------');
+      console.log(result);
+      console.log('----------------');
+      if (result) {
+        this.guestService.post(result).subscribe(
+          (res) => this.guests = res
+        );
+      }
     });
 
     // this.guestService.post(this.guest).subscribe(
@@ -96,11 +105,11 @@ export class AppComponent {
   //   console.log(info2);
   // }
 
-  arrow() {
-    return () => {
-      console.log('arrow');
-    }
-  }
+  // arrow() {
+  //   return () => {
+  //     console.log('arrow');
+  //   }
+  // }
 
   // promise() {
   //   return new Promise(

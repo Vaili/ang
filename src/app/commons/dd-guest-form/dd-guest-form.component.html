@@ -1,0 +1,28 @@
+<h1> Add Guest </h1>
+
+<form [formGroup]="guestForm" (ngSubmit)="onSubmit()">
+  <div id="dd-name">
+    <input
+      formControlName="firtsName"
+      name="firtsName"
+      id="firtsName">
+
+    <!--Per aspetto material: MatFormField-->
+    <input
+      formControlName="lastName"
+      name="lastName"
+      id="lastName">
+
+    <select
+      [formControlName]="'company'"
+      name="company"
+      id="company">
+      <option name="" value=""></option>
+      <option *ngFor="let company of companies" name="company"> {{ company }} </option>
+    </select>
+
+    <button type="submit" [disabled]="!guestForm.valid"> Submit </button>
+  </div>
+  {{ guestForm.controls['firtsName'].value }}
+</form>
+

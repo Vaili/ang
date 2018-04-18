@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {IGuess} from "../../models/iguess";
 
 @Component({
   selector: 'app-simple-dialog',
@@ -14,5 +15,9 @@ export class SimpleDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() { }
+
+  formDataArrived(value) {
+    this.dialogRef.close(value);
+  }
 
 }
