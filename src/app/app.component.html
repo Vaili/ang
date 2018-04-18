@@ -1,0 +1,20 @@
+<h1> {{ title }} </h1>
+<!--<h2> {{ printLet() }} </h2>-->
+<!--{{ arrow()() }}-->
+<!--{{ (arrow())() }}-->
+<h2> Simple List </h2>
+{{ guests | json }}
+<hr>
+
+<div>
+
+  <app-add-guest-button
+    (add)="onAddGuestListeer()">
+  </app-add-guest-button>
+
+  <app-guess-list
+    [fakeGuest]="guestsObs | async"
+    (deleteEmit)="onDelete($event)">
+  </app-guess-list>
+
+</div>

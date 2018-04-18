@@ -1,0 +1,14 @@
+<h2 > Guess List </h2>
+
+<hr>
+<div fxLayout="column" fxLayoutGap="10px">
+  <app-simpleguess
+    *ngFor="let guest of fakeGuest; let i = index"
+    [guest]="guest"
+    [index]="i"
+    (onDelete)="onDeleteButton($event)">
+  </app-simpleguess>
+</div>
+<hr>
+
+
