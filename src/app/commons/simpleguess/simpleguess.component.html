@@ -1,16 +1,20 @@
 <mat-card
-      appAppHighlight
-      [index]="index"
-      [ngClass]="{ 'active': showDetails }"
-      style="cursor: pointer; display: block"
-      (click)="toggleDetails()"
->
+  [ngClass]="{ 'active': showDetails }"
+  style="cursor: pointer; display: block"
+  (click)="toggleDetails()">
+
   <mat-card-title >
+    <!--style="background-color: red; font-size: 35px"-->
+    <button
+    class="add"
+    mat-button
+    (click)="onDeleteGuest()"
+    > X </button>
     {{ index + ' ' + guest.firtsName }}
-    <button class="btn btn-danger" (click)="onDeleteGuest()"> Delete guest </button>
   </mat-card-title>
-  <mat-card-content [id]="'guest-description-' + index" >
-    {{ guest.id }}
+
+  <mat-card-content [id]="'guest-description-' + index" *ngIf="showDetails">
+    {{ index }} {{ guest.id }}
     <hr>
     {{ guest.firtsName }}
     <hr>
@@ -22,6 +26,7 @@
     <hr>
     {{ guest.birthDate | extendData:'t' }}
   </mat-card-content>
+
 </mat-card>
 
 

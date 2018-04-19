@@ -13,7 +13,7 @@
   </app-add-guest-button>
 
   <app-guess-list
-    [fakeGuest]="guestsObs | async"
+    [fakeGuest]="guests"
     (deleteEmit)="onDelete($event)">
   </app-guess-list>
 

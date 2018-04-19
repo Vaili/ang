@@ -29,7 +29,7 @@ export class AppComponent {
   };
 
   // guestsObs = this.guestService.index();
-  guestsObs = this.guestService.index().do(console.log);
+  // guestsObs = this.guestService.index().do(console.log);
   guests: IGuess[];
 
   constructor(
@@ -43,7 +43,7 @@ export class AppComponent {
     this.guestService.index().subscribe(
       (res) => {
         console.log('la risposta del server: ', res);
-        this.guestsObs = this.guestService.index();
+        this.guests = this.guestService.guests;
       });
 
     //// Equivalente a riga25
@@ -55,7 +55,8 @@ export class AppComponent {
   /* Observable list modifier*/
   onAddGuestListeer(args: string) {
     let dialogRef = this.matDialog.open( SimpleDialogComponent, {
-      width: '250px',
+      width: '800px',
+      height: '280px',
       data: { }
     });
 

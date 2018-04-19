@@ -1,7 +1,33 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
+import 'rxjs/add/operator/debounceTime'
 
 import { IGuess } from "../../models/iguess";
+import {Observable} from "rxjs/Observable";
+
+function isName(value: string):ValidatorFn {
+  return ((control: FormControl) => {
+    if (control.value === value) {
+      return null;
+    } else {
+      return { 'isNameWrong': {value: control.value} };
+    }
+  });
+}
+
+// function isAsyncName(value: string): AsyncValidatorFn {
+//   return ((control: FormControl) => {
+//     return new Observable(
+//       (observer) => {
+//         if (control.value === value) {
+//           return null;
+//         } else {
+//           observer.next({'isAsyncName' : {false}})
+//         }
+//         observer.complete();
+//       });
+//     });
+// }
 
 const companies = [
   'PC SYSTEM',
@@ -25,11 +51,18 @@ export class DdGuestFormComponent implements OnInit {
     private readonly formBuilder: FormBuilder,
   ) {
     this.guestForm = this.formBuilder.group({
-      'firtsName': new FormControl(null, [Validators.required]),
-      'lastName': new FormControl(null, [Validators.required]),
-      'company' : new FormControl(null, [Validators.required]),
+      'firtsName': [null, [], []],
+        //new FormControl(null, [Validators.required], /*[isName('Stefan')]*/),
+      'lastName': [null, [], []],
+        //new FormControl(null, [Validators.required]),
+      'company' : [null, [], []],
+        //new FormControl(null, [Validators.required]),
+      'phoneNumbers': this.formBuilder.array([]),
+    });
 
-    })
+    this.guestForm.controls['firtsName'].valueChanges.debounceTime(3000).subscribe(
+      (res) => console.log(res)
+    );
   }
 
   ngOnInit() { }
@@ -47,5 +80,7 @@ export class DdGuestFormComponent implements OnInit {
     this.newGuest.emit(guest);
     this.guestForm.reset();
   }
+
+  private addPhoneNumber
 
 }

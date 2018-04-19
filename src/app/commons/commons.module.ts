@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatButtonModule, MatCardModule, MatDialogModule} from "@angular/material";
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule
+} from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { GuessListComponent } from './guess-list/guess-list.component';
@@ -32,6 +39,10 @@ const components = [
     MatButtonModule,
     PipesModule,
     ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
   ],
   exports: [
     ...components,

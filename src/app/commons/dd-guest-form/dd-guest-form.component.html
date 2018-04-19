@@ -1,28 +1,42 @@
 <h1> Add Guest </h1>
 
-<form [formGroup]="guestForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="guestForm" (ngSubmit)="onSubmit()" style="width: 700px">
   <div id="dd-name">
-    <input
-      formControlName="firtsName"
-      name="firtsName"
-      id="firtsName">
-
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="First Name"
+        formControlName="firtsName"
+        name="firtsName"
+        id="firtsName">
+    </mat-form-field>
     <!--Per aspetto material: MatFormField-->
-    <input
-      formControlName="lastName"
-      name="lastName"
-      id="lastName">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Last Name"
+        formControlName="lastName"
+        name="lastName"
+        id="lastName">
+    </mat-form-field>
 
-    <select
-      [formControlName]="'company'"
-      name="company"
-      id="company">
-      <option name="" value=""></option>
-      <option *ngFor="let company of companies" name="company"> {{ company }} </option>
-    </select>
+    <mat-form-field>
+      <mat-select
+        placeholder="Company"
+        formControlName="company"
+        id="company">
+        <mat-option value=""></mat-option>
+        <mat-option *ngFor="let company of companies" value="{{company}}"> {{ company }} </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-    <button type="submit" [disabled]="!guestForm.valid"> Submit </button>
+    <button
+      type="submit"
+      [disabled]="!guestForm.valid"
+      mat-raised-button>
+      Submit
+    </button>
   </div>
-  {{ guestForm.controls['firtsName'].value }}
+  {{ guestForm.controls['company'].value | json }}
 </form>
 
